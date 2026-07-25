@@ -1,4 +1,5 @@
-# schroeder2020_seizure_pathway
+# schroeder2020-seizure-pathways
+
 A full computational reproduction of the main figures and results from:
 
 > Schroeder GM, Diehl B, Chowdhury FA, Duncan JS, de Tisi J, Trevelyan AJ, Forsyth R, Jackson A, Taylor PN, Wang Y. **Seizure pathways change on circadian and slower timescales in individual patients with focal epilepsy.** *PNAS* 2020;117(20):11048–11058. https://doi.org/10.1073/pnas.1922084117
@@ -27,23 +28,43 @@ Six seizures highlighted in colour tracing routes through 2D network space. Seiz
 
 ![Figure 1B](figures/fig1b_seizure_pathways.png)
 
-### Figure 1C — Seizure dissimilarity matrix + temporal correlation (patient 931)
-11×11 dissimilarity heatmap alongside the permutation test result showing rho = 0.69, p = 0.0001 for patient 931.
+### Figure 1C — Seizure dissimilarity matrix
+11×11 dissimilarity heatmap showing pairwise similarity between all seizures for patient 931.
 
-![Figure 1C](figures/fig1c_dissimilarity_temporal.png)
+![Figure 1C](figures/fig1c_dissimilarity_matrix.png)
+
+### Figure 3A-B — Temporal comparison for patient 931
+Seizure dissimilarity matrix alongside temporal distance matrix, scatter plot, and permutation test result (rho = 0.69, p = 0.0001).
+
+![Figure 3AB](figures/fig3ab_temporal_comparison_931.png)
 
 ### Figure 2A — Seizure dissimilarity distributions across all 31 patients
 Beeswarm plot of all pairwise dissimilarities per patient, coloured by clustering result (cyan = spectrum, purple = multiple clusters).
 
 ![Figure 2](figures/fig2_dissimilarity_distributions.png)
 
-### Figure 3 — Temporal correlation across patients
-Left: distribution of Spearman rho values across all patients (cyan = significant after FDR). Right: median dissimilarity at six timescales, separated by significance.
+### Figure 2B — Clustering histograms
+Bihistogram comparing median dissimilarity between spectrum and clustered patients, plus within vs between cluster dissimilarity.
 
-![Figure 3](figures/fig3_temporal_correlation.png)
+![Figure 2B](figures/fig2b_clustering_bihistogram.png)
 
-### Figure 4 — Model classification across all 31 patients
-Patients classified into Linear (17), Circadian (3), Linear + Circadian (7), or Indeterminate (4) based on the shape of their temporal correlation pattern.
+### Figure 3C — Correlation distribution across patients
+Distribution of Spearman rho values across all 31 patients (cyan = significant after FDR correction, grey = not significant).
+
+![Figure 3C](figures/fig3c_rho_distribution.png)
+
+### Figure 3D — Dissimilarity at different timescales
+Median seizure dissimilarity at six timescales from <15 minutes to 1–2 weeks, separated by significance.
+
+![Figure 3D](figures/fig3d_timescale_boxplots.png)
+
+### Figure 4A-B — Model signatures
+Three mathematical models (linear, circadian, linear + circadian) and their characteristic temporal correlation signatures across noise levels.
+
+![Figure 4AB](figures/fig4ab_model_signatures.png)
+
+### Figure 4C — Model classification across all 31 patients
+Patients grouped into Linear (17), Circadian (3), Linear + Circadian (7), or Indeterminate (4) based on the shape of their temporal correlation pattern.
 
 ![Figure 4C](figures/fig4c_model_results.png)
 
@@ -130,18 +151,18 @@ directories_setup
 addpath(genpath('lib/'))
 addpath(genpath('lib/external_toolboxes'))
 
-run('fig1_and_fig3_931_seizure_pathways.m')   % Figures 1 + 3A-B — ~5 min (MDS + DTW)
-run('fig2_dissimilarity_distributions_and_clusters.m')  % Figure 2 — fast
-run('fig3_temporal_association_across_patients.m')      % Figure 3C-D — fast
-run('fig4_patient_931_model.m')                         % Figure 4A-B — fast
-run('fig4_model_results_across_patients.m')             % Figure 4C — fast
+run('fig1_and_fig3_931_seizure_pathways.m')              % Figures 1 + 3A-B — ~5 min (MDS + DTW)
+run('fig2_dissimilarity_distributions_and_clusters.m')   % Figure 2 — fast
+run('fig3_temporal_association_across_patients.m')       % Figure 3C-D — fast
+run('fig4_patient_931_model.m')                          % Figure 4A-B — fast
+run('fig4_model_results_across_patients.m')              % Figure 4C — fast
 ```
 
 ---
 
 ## Fixes applied
 
-Three compatibility issues were encountered running the original code on MATLAB R2024a:
+Four compatibility issues were encountered running the original code on MATLAB R2024a:
 
 | Issue | Cause | Fix |
 |---|---|---|
